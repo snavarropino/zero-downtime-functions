@@ -25,7 +25,7 @@ namespace SimpleFunctionApp
                 await connection.ExecuteAsync(@"INSERT INTO Events Values (@executionId, @message, 1, NULL)",
                                              new { executionId = executionId, message= myQueueItem });
 
-                var ms=new Random(DateTime.UtcNow.Millisecond).Next(7000, 20000);
+                var ms=new Random(DateTime.UtcNow.Millisecond).Next(5000, 15000);
                 await Task.Delay(ms);
 
                 await connection.ExecuteAsync(@"UPDATE Events SET Finished=1 WHERE ExecutionId= @executionId",
