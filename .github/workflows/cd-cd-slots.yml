@@ -31,6 +31,6 @@ jobs:
       uses: Azure/functions-action@v1.3.1
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-        publish-profile: ${{ secrets.zero_downtime_c60d }}
+        publish-profile: ${{ secrets.zero_downtime_blue }}
         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
         slot-name: blue
