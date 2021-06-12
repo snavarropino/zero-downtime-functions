@@ -1,9 +1,6 @@
 name: CI/CD
 on:
   workflow_dispatch:
-  push:
-    branches:
-    - main
 env:
   AZURE_FUNCTIONAPP_NAME: zero-downtime
   AZURE_FUNCTIONAPP_PACKAGE_PATH: src/SimpleFunctionApp/publish
