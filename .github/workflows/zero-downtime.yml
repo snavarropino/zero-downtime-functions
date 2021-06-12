@@ -1,4 +1,4 @@
-name: Build and deploy .NET Core Function App to Azure functions app
+name: CI/CD
 on:
   workflow_dispatch:
   push:
@@ -10,7 +10,6 @@ env:
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 5.0.x
   WORKING_DIRECTORY: src/SimpleFunctionApp
-  DOTNET_CORE_VERSION_INPROC: 3.1.x
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -20,10 +19,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
-    - name: Setup .NET Core (for inproc extensions)
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: ${{ env.DOTNET_CORE_VERSION_INPROC }}
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
     - name: Build
