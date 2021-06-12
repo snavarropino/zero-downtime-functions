@@ -7,7 +7,7 @@ namespace SimpleFunctionApp
 {
     public static class HttpFunctions
     {
-        private const int Version = 2;
+        private const int Version = 1;
 
         [Function("Version")]
         public static async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req,
