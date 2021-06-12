@@ -15,6 +15,7 @@ namespace SimpleFunctionApp
         {
             Configuration = configuration;
         }
+
         [Function(nameof(QueueTrigger))]
         [QueueOutput("zero-queue")] 
         public async Task<string> QueueTrigger([QueueTrigger("zero-queue")] string myQueueItem)
