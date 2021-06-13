@@ -23,14 +23,14 @@ namespace SimpleFunctionApp
             var executionId = Guid.NewGuid();
             await using (var connection = new SqlConnection(Configuration["dbConnectionString"]))
             {
-                await connection.ExecuteAsync(@"INSERT INTO Events Values (@executionId, @message, 1, NULL)",
-                                             new { executionId = executionId, message= myQueueItem });
+                await connection.ExecuteAsync(@"INSERT INTO Events Values (@executionId, @message, @now, NULL)",
+                                             new { executionId = executionId, message= myQueueItem, now = DateTime.UtcNow });
 
                 var ms=new Random(DateTime.UtcNow.Millisecond).Next(5000, 15000);
                 await Task.Delay(ms);
 
-                await connection.ExecuteAsync(@"UPDATE Events SET Finished=1 WHERE ExecutionId= @executionId",
-                    new { executionId = executionId });
+                await connection.ExecuteAsync(@"UPDATE Events SET Finished=@now WHERE ExecutionId= @executionId",
+                    new { executionId = executionId, now = DateTime.UtcNow });
             }
 
             var newMessage = GetNewMessage(myQueueItem);
