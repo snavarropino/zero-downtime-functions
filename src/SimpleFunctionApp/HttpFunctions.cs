@@ -7,13 +7,13 @@ namespace SimpleFunctionApp
 {
     public static class HttpFunctions
     {
-        private const int Version = 1;
+        private const int Version = 2;
 
         [Function("Version")]
         public static async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req,
             FunctionContext executionContext)
         {
-            await Task.Delay(150);
+            await Task.Delay(150); //Simulate tasks
 
             var response = req.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
